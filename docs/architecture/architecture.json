@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "continuum-design-pub",
+    "output": "architecture.html",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      40,
+      60
+    ],
+    "cols": 4,
+    "gapX": 80,
+    "gapY": 110,
+    "cellW": 160
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "external",
+      "label": "Viewer browser",
+      "sublabel": "opens index.html",
+      "row": 0,
+      "col": 0,
+      "size": [
+        160,
+        60
+      ]
+    },
+    {
+      "id": "player",
+      "type": "backend",
+      "label": "Timeline player",
+      "sublabel": "inline script, 35s run",
+      "row": 0,
+      "col": 1,
+      "size": [
+        160,
+        60
+      ]
+    },
+    {
+      "id": "scenes",
+      "type": "frontend",
+      "label": "Five scenes",
+      "sublabel": "intro to closing",
+      "row": 0,
+      "col": 2,
+      "size": [
+        160,
+        60
+      ]
+    },
+    {
+      "id": "captions",
+      "type": "frontend",
+      "label": "Captions and progress",
+      "sublabel": "timed text, bar",
+      "row": 0,
+      "col": 3,
+      "size": [
+        160,
+        60
+      ]
+    },
+    {
+      "id": "fonts",
+      "type": "external",
+      "label": "Web fonts",
+      "sublabel": "Google Fonts stylesheet",
+      "row": 1,
+      "col": 1,
+      "size": [
+        160,
+        60
+      ]
+    },
+    {
+      "id": "styles",
+      "type": "database",
+      "label": "Inline styles",
+      "sublabel": "palette, layout",
+      "row": 1,
+      "col": 2,
+      "size": [
+        160,
+        60
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "browser-player",
+      "from": "browser",
+      "to": "player",
+      "label": "load, R, F keys",
+      "variant": "emphasis"
+    },
+    {
+      "id": "player-scenes",
+      "from": "player",
+      "to": "scenes",
+      "label": "activates"
+    },
+    {
+      "id": "scenes-captions",
+      "from": "scenes",
+      "to": "captions",
+      "label": "per scene"
+    },
+    {
+      "id": "fonts-styles",
+      "from": "fonts",
+      "to": "styles",
+      "label": "loads"
+    },
+    {
+      "id": "styles-scenes",
+      "from": "styles",
+      "to": "scenes",
+      "label": "styles",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Shape",
+      "items": [
+        "One static HTML file, no build step"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Playback",
+      "items": [
+        "A timer drives scenes and captions in sequence"
+      ]
+    }
+  ]
+}
